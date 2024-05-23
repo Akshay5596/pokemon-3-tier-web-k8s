@@ -1,0 +1,1 @@
+kubectl create secret generic my-secret --dry-run=client --from-literal=postgres-username=javaimage --from-literal=postgres-dbname=fullstackjava --from-literal=postgres-password=test123 -o yaml | kubeseal --cert my-new-pub-cert.pem -o yaml > my-sealed-secret.yaml
