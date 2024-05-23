@@ -1,0 +1,53 @@
+version: "3.8"
+services:
+  postgress:
+    build: 
+     context: ./postgresql
+     dockerfile: Dockerfile
+    container_name: postgressql
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: javaimage
+      POSTGRES_PASSWORD: test123
+      POSTGRES_DB: fullstackjava
+    networks:
+      java_app:
+        ipv4_address: 10.10.0.31
+    restart: always
+############################################
+  springboot:
+    depends_on:
+      - postgress
+    build: 
+      context: ./springboot
+      dockerfile: Dockerfile
+    container_name: springboot_new
+    ports:
+      - "8080:8080"
+    networks:
+      java_app:
+        ipv4_address: 10.10.0.32
+    restart: always
+############################################
+  reactapp:
+    depends_on:
+      - postgress
+      - springboot
+    build: 
+      context: ./react
+      dockerfile: Dockerfile
+    container_name: react
+    ports:
+      - "3000:80"
+    networks:
+      java_app:
+        ipv4_address: 10.10.0.33
+    restart: always
+
+networks:
+  java_app:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.0.0/16

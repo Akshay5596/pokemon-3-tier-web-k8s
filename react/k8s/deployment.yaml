@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-deployment
+  labels:
+    app: react
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react
+  template:
+    metadata:
+      labels:
+        app: react
+    spec:
+      containers:
+      - name: react
+        image:  akshay4444/imagestore:react@sha256:752b2258bc0bc7f6c9bfc09e67a0219c9c50d21d104176ff5d38703aa66ea27e
+        ports:
+        - containerPort: 80
