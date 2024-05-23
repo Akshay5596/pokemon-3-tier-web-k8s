@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
       - name: react
-        image:  akshay4444/imagestore:react@sha256:752b2258bc0bc7f6c9bfc09e67a0219c9c50d21d104176ff5d38703aa66ea27e
+        image:  akshay4444/imagestore:react1
         ports:
         - containerPort: 80

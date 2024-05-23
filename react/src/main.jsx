@@ -5,7 +5,7 @@ import App from './App';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://192.168.49.2:30001';
+axios.defaults.baseURL = 'http://imageapp.backend.com';
 
 const queryClient = new QueryClient();
 
