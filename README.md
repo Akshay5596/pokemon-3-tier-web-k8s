@@ -38,3 +38,19 @@ docker image build -t <repository>:<tag> . [--no-cache]
 ```
 docker container run -d --name reactapp -p8090:80 <repository>:<tag>
 ```
+
+###########################
+install kubeseal 
+
+https://foxutech.medium.com/bitnami-sealed-secrets-kubernetes-secret-management-86c746ef0a79
+
+################
+cerate seal secret 
+1. get pem certificate.pem
+$ kubectl get secret -n kube-system -o yaml | grep tls.crt | awk '{print $2}' | base64 -d > my-new-pub-cert.pem
+
+2. cerate seal secret   make shure namespce correct
+
+$kubectl create secret generic my-secret --dry-run=client --from-literal=postgres-username=javaimage --from-literal=postgres-dbname=fullstackjava --from-literal=postgres-password=test123 -o yaml | kubeseal --cert my-new-pub-cert.pem -o yaml > my-sealed-secret.yaml
+
+
