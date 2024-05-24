@@ -17,7 +17,7 @@ spec:
         app: spring
     spec:
       containers:
-      - name: akshay4444/imagestore:springenvnew
+      - name: akshay
         image: akshay4444/imagestore:springenvnew
         ports:
         - containerPort: 8080
