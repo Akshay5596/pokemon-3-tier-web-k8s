@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
       - name: spring-continer
-        image: akshay4444/imagestore:springenv
+        image: akshay4444/imagestore:springenv@sha256:479108f8e449dd66ac741ee12ae2164f3b7cdebd593b0ef4b45e8355c2979558
         ports:
         - containerPort: 8080
