@@ -19,5 +19,5 @@ spec:
       containers:
       - name: akshay
         image: akshay4444/imagestore:springhardcorepass
-        ports:
+                ports:
         - containerPort: 8080
