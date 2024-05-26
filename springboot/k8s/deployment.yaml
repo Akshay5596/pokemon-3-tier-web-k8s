@@ -17,6 +17,7 @@ spec:
         app: spring
     spec:
       containers:
+      - name: spring
         image: akshay4444/imagestore:replaceImageTag
         ports:
         - containerPort: 8080
