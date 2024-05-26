@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
       - name: react
-        image:  akshay4444/imagestore:react1
+        image:  akshay4444/imagestore:replaceImageTag
         ports:
         - containerPort: 80
