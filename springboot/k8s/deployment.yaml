@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
       - name: akshay
-        image: akshay4444/imagestore:springhardcorepassnew@sha256:01f75f94a6ae85b6b341d180713dc3f85b2961859393487da2c2280750202673
+        image: akshay4444/imagestore:replaceImageTag
         ports:
         - containerPort: 8080
