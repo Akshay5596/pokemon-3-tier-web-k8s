@@ -16,7 +16,7 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
-        sh 'cd react && npm install && npm run build'
+        sh 'cd react && npm run build'
       }
     }
     // stage('Static Code Analysis') {
