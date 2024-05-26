@@ -61,7 +61,7 @@ pipeline {
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" springboot/k8s/deployment.yaml
                     git add springboot/k8s/deployment.yaml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                    git push origin git@github.com 
+                    git push origin main
                 '''
             }
         }
