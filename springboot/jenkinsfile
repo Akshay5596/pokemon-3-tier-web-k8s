@@ -27,7 +27,7 @@ pipeline {
     stage('Static Code Analysis') {
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-          sh 'cd springboot &&  sh mvn sonar:sonar -Dsonar.url=http://192.168.49.1:9000/ -Dsonar.login=squ_10bd0adf14786037e7fb4d9cb45c88add126026c -Dsonar.projectName=sprin-bckend -Dsonar.java.binaries=. -Dsonar.projectKey=sprin-bckend'
+          sh 'cd springboot &&  mvn sonar:sonar -Dsonar.url=http://192.168.49.1:9000/ -Dsonar.login=squ_10bd0adf14786037e7fb4d9cb45c88add126026c -Dsonar.projectName=sprin-bckend -Dsonar.java.binaries=. -Dsonar.projectKey=sprin-bckend'
         }
       }
     }
