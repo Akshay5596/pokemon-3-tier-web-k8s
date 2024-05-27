@@ -29,16 +29,15 @@ pipeline {
     stage('Build Docker Image') {
       environment {
         DOCKER_IMAGE = "akshay4444/imagestore:${BUILD_NUMBER}"
-        // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
         REGISTRY_CREDENTIALS = credentials('docker_cred')
       }
-    }
+    
     steps {
       script {
           sh 'cd springboot && docker build -t ${DOCKER_IMAGE} .'
             }
       }
-            
+    }        
     stage('Scan image') {
       steps {
         script {
