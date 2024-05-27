@@ -17,7 +17,21 @@ pipeline {
         // build the project and create a JAR file
         sh 'cd springboot && mvn clean install'
       }
+      post {
+    failure {
+      mail(
+        to: '111995akshaypatil@gmail.com', 
+        subject: "Failed: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
+        body: "Job '${env.JOB_NAME}' (${env.BUILD_URL}) Failed."
+      )
     }
+        success{
+            echo 'build and test are completed successfully'
+            archiveArtifacts artifacts: '**/target/*.jar', onlyIfSuccessful: true
+        }
+    }
+  }
+    
     stage('Static Code Analysis') {
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
