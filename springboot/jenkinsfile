@@ -55,7 +55,7 @@ pipeline {
     stage('Scan image') {
       steps {
         script {
-                sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image akshay4444/imagestore:${BUILD_NUMBER} > scan_results.txt '
+                sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image akshay4444/imagestore:${BUILD_NUMBER}'
                 }
           }
         }
