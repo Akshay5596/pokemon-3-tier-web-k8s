@@ -31,22 +31,39 @@ pipeline {
         }
       }
     }
-    stage('Build and Push Docker Image') {
+
+    stage('Build Docker Image') {
       environment {
         DOCKER_IMAGE = "akshay4444/imagestore:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
         REGISTRY_CREDENTIALS = credentials('docker_cred')
       }
+    steps {
+      script {
+          sh 'cd springboot && docker build -t ${DOCKER_IMAGE} .'
+            }
+      }
+            
+    stage('Scan image') {
       steps {
         script {
-            sh 'cd springboot && docker build -t ${DOCKER_IMAGE} .'
+                sh 'trivy image  $registry:$BUILD_NUMBER > scan_results.txt'
+                }
+          }
+        }
+
+    stage('Push image') {
+      steps {
+        script {
             def dockerImage = docker.image("${DOCKER_IMAGE}")
-            docker.withRegistry('https://index.docker.io/v1/', "docker_cred") {
-                dockerImage.push()
+            docker.withRegistry('https://index.docker.io/v1/', 'docker_cred') {
+            dockerImage.push("${BUILD_NUMBER}")
+                    }
+                }
             }
         }
-      }
-    }
+
+
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "pokemon-3-tier-web-k8s"
