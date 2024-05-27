@@ -63,8 +63,8 @@ pipeline {
     stage('Push image') {
       steps {
         script {
-           sh 'docker login -u akshay4444 -p Akshay@123'
-            sh 'docker push ${DOCKER_IMAGE}'
+      
+            sh 'docker push akshay4444/imagestore:${BUILD_NUMBER}'
             
                     }
                 }
