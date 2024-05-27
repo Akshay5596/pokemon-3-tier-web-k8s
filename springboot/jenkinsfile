@@ -15,7 +15,7 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
-        sh 'cd springboot && mvn clean install'
+        sh 'cd springboo && mvn clean install'
       }
       post {
     failure {
