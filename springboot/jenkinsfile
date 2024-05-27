@@ -11,7 +11,7 @@ pipeline {
         git branch: 'main', url: 'git@github.com:Akshay5596/pokemon-3-tier-web-k8s.git'
       }
     }
-    stage('Build and Test') {
+    stage('Build Project') {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
@@ -41,7 +41,7 @@ pipeline {
     stage('Scan image') {
       steps {
         script {
-                sh 'trivy image ${DOCKER_IMAGE} > scan_results.txt'
+                sh 'trivy image "akshay4444/imagestore:${BUILD_NUMBER}" > scan_results.txt'
                 }
           }
         }
